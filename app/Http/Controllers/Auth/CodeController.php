@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\ApiResponse;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CodeRequest;
 use App\Http\Resources\CodeResource;
@@ -11,13 +11,13 @@ use Illuminate\Http\Request;
 
 class CodeController extends Controller
 {
-    use ApiResponse;
+ 
 
     public function store(CodeRequest $request)
     {
         
         $code = Code::create([
-            'value' => $request->value,
+            'value' => ,
             'user_id'=>$request->user_id,
             'collage_id'=>$request->collage_id
         ]);

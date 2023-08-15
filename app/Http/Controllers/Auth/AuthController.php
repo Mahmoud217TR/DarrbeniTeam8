@@ -59,6 +59,7 @@ class AuthController extends Controller
         ];
         return $this->loginResponse($data, $token);
     }
+    return $this->notfoundResponse('Code Not found');
     }
 
     public function logout()

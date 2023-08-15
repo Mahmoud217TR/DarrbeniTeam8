@@ -25,9 +25,9 @@ class CodeRequest extends FormRequest
     {
         return [
             //
-            'value' => 'required|integer|min:0|max:100', // Adjust the range as needed
-            'collage_id' => 'required',
-            'user_id' => 'required'
+            // 'value' => 'required|integer|min:0|max:100', // Adjust the range as needed
+            'collage_name' => 'required',
+            'user_name' => 'required'
         ];
     }
 }
