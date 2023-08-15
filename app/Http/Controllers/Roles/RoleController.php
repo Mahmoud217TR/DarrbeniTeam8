@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers\Roles;
 
-use App\Http\Controllers\ApiResponse;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RoleRequest;
 use App\Http\Resources\RoleResource;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\ApiResponseTrait;
+
 
 class RoleController extends Controller
 {
-    use ApiResponse;
+    use ApiResponseTrait;
+   
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +24,7 @@ class RoleController extends Controller
     public function index()
     {
         $role = RoleResource::collection(Role::all());
-        return $this->apiResponse($role);
+        return $this->apiResponse('data all role','',$role);
     }
     public function store(RoleRequest $request)
     {
@@ -31,7 +34,7 @@ class RoleController extends Controller
         ]);
 
         if ($role) {
-            return $this->successResponse(new RoleResource($role), 'the role  Save');
+            return $this->successResponse('the role  Save',new RoleResource($role) );
         }
         return $this->errorResponse('the role Not Save');
     }
@@ -47,7 +50,7 @@ class RoleController extends Controller
         $role = role::find($id);
 
         if ($role) {
-            return $this->successResponse(new RoleResource($role), null);
+            return $this->successResponse(null,new RoleResource($role));
         }
         return $this->errorResponse('the role Not Found');
     }
@@ -68,7 +71,7 @@ class RoleController extends Controller
         if (!$role) {
             return $this->errorResponse('the role Not Found', 404);
         }
-        if ($role->user_id === Auth::id()) {
+       
 
             $role->update([
                 'role_name' => $request->role_name,
@@ -76,10 +79,10 @@ class RoleController extends Controller
             ]);
 
             if ($role) {
-                return $this->successResponse(new roleResource($role), 'the role update');
+                return $this->successResponse('the role update',new roleResource($role));
             }
-        }
-        return $this->errorResponse('you con not updet the role Because you are not authorized', 404);
+       
+        return $this->errorResponse('you con not updet the role ', 404);
     }
 
     /**
@@ -92,14 +95,14 @@ class RoleController extends Controller
     {
         $Role = Role::find($id);
 
-        if ($Role->user_id === Auth::id()) {
+        
             $Role->delete();
             if ($Role) {
-                return $this->successResponse(null, 'the Role deleted');
+                return $this->successResponse( 'the Role deleted',null);
             }
             return $this->errorResponse('you con not delete the Role', 400);
-        }
-        return $this->errorResponse('you con not delete the Role Because you are not authorized', 401);
+        
+        
     }
     
 }
