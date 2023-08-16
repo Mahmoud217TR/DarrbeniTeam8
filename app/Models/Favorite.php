@@ -9,8 +9,9 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Favorite extends Model
 {
-    use HasFactory,HasUuids;
-    protected $fillable=['user_id'];
+    use HasFactory;
+    // ,HasUuids
+    protected $fillable=['user_id','uuid'];
     
     public function favoriteble(): MorphTo
     {

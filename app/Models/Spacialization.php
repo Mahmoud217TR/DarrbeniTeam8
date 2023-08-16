@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Spacialization extends Model
 {
-    use HasFactory ,HasUuids;
-    protected $fillable=['name','collage_id'];
+    use HasFactory ;
+    // ,HasUuids
+    protected $fillable=['name','collage_id','uuid'];
 
 
     public function collage()

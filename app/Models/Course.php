@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
-    use HasFactory, HasUuids;
-    protected $fillable=['name','image','spacialization_id'];
+    use HasFactory;
+    // ,HasUuids
+    protected $fillable=['name','image','spacialization_id','uuid'];
 
 
 
@@ -17,5 +18,10 @@ class Course extends Model
     public function specializations()
     {
         return $this->HasToMany(Spacialization::class);
+    }
+    
+    public function question()
+    {
+        return $this->HasToMany(CourseOuestion::class);
     }
 }

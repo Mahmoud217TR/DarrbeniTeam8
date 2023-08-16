@@ -23,8 +23,8 @@ class RegisterRequest extends FormRequest
     {
         return [
             //
-            'username'=>'required|string|max:50',
-            'phone' => 'required|regex:/^[0-9]{10}$/',
+            'username'=>'required|string|max:50|unique:users',
+            'phone' => 'required|regex:/^[0-9]{10}$/|unique:users',
             'collage_name' => 'required|string'
 
      

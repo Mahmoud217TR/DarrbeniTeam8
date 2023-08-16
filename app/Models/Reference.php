@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 class Reference extends Model
 {
     use HasFactory;
-    protected $fillable=['refernce'];
+    // ,HasUuids
+    protected $fillable=['refernce','uuid'];
 
     public function referenceable(): MorphTo
     {

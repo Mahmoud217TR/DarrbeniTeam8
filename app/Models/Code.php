@@ -9,17 +9,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Code extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory;
+// ,HasUuids
+    protected $fillable = ['value', 'collage_id','user_id','uuid'];
 
-    protected $fillable = ['value', 'collage_id','user_id'];
 
-
-    public function collages()
-    {
-        return $this->hasOne(Collage::class);
-    }
-    public function users()
+    public function collage()
     {
         return $this->belongsTo(Collage::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class RoleUser extends Model
 {
-    use HasFactory,HasUuids;
+    use HasFactory;
+    // ,HasUuids
 
-    protected $fillable=['user_id','role_id'];
+    protected $fillable=['user_id','role_id','uuid'];
     
 }

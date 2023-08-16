@@ -25,7 +25,7 @@ class AuthController extends Controller
         }
 
         $user = User::create([
-            // 'uuid' => Str::uuid(),
+            'uuid' => Str::uuid(),
             'username' => $request->username,
             'phone' => $request->phone,
             'collage_id' => $collage->id,
@@ -55,7 +55,7 @@ class AuthController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
         $data = [
             'username' => $user->username,
-            'collage' => $user->collage_id
+            'collage' => $user->collages->name
         ];
         return $this->loginResponse($data, $token);
     }

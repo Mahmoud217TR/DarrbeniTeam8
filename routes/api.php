@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\CodeController;
+use App\Http\Controllers\Courses\CourseController;
 use App\Http\Controllers\Roles\RoleController;
 use App\Http\Controllers\Roles\RoleUserController;
 use Illuminate\Http\Request;
@@ -39,5 +40,6 @@ Route::post('/code',[CodeController::class,'store']);
 
 Route::resource('/roles', RoleController::class);
 Route::resource('/rolesUser', RoleUserController::class);
+Route::resource('/course', CourseController::class);
 
 });

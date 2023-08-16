@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    use HasFactory ,HasUuids;
+    use HasFactory ;
+// ,HasUuids
 
-
-    protected $fillable=['name','image'];
+    protected $fillable=['name','image','uuid'];
 
 
     public function collages()

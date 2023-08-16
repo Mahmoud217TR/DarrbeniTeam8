@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('codes', function (Blueprint $table) {
-            // $table->uuid('uuid')->unique();
+            $table->uuid('uuid')->unique();
             $table->id();
             $table->string('value');
             $table->foreignId('collage_id')->constrained('collages')->cascadeOnDelete();

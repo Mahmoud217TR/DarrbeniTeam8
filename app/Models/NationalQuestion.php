@@ -9,8 +9,9 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class NationalQuestion extends Model
 {
-    use HasFactory,HasUuids;
-    protected $fillable=['question','date','spacialization_id'];
+    use HasFactory;
+    // ,HasUuids
+    protected $fillable=['question','date','spacialization_id','uuid'];
 
     public function answers()
     {

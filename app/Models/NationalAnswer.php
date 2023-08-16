@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class NationalAnswer extends Model
 {
-    use HasFactory ,HasUuids;
-    protected $fillable=['answer','question_id','status'];
+    use HasFactory ;
+    // ,HasUuids
+    protected $fillable=['answer','question_id','status','uuid'];
 
     public function questions()
     {

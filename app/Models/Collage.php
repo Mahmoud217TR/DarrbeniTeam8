@@ -9,10 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Collage extends Model
 {
-    use HasFactory,HasUuids;
-
+    use HasFactory;
+// ,HasUuids
     
-    protected $fillable=['name','image','category_id'];
+    protected $fillable=['name','image','category_id','uuid'];
 
 
 

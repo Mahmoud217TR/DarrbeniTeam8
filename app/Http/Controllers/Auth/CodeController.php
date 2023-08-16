@@ -7,30 +7,38 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CodeRequest;
 use App\Http\Resources\CodeResource;
 use App\Models\Code;
+use App\Models\Collage;
+use App\Models\User;
+use App\Traits\ApiResponseTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class CodeController extends Controller
 {
- 
+    use ApiResponseTrait;
 
     public function store(CodeRequest $request)
     {
+        $user=User::where('username',$request->user_name)->first();
+        $collage=Collage::where('name',$request->collage_name)->first();
         
         $code = Code::create([
-            'value' => ,
-            'user_id'=>$request->user_id,
-            'collage_id'=>$request->collage_id
+            'uuid' => Str::uuid(),
+            'value' => random_int(1000, 9999),
+            'user_id'=>$user->id,
+            'collage_id'=>$collage->id,
         ]);
 
 
         if ($code) {
             $data=[
                 new CodeResource($code),
-                'user'=>$code->users->UserName,
-                'collage'=>$code->collages->name
+                'user'=>$code->user->username,
+                'collage'=>$code->collage->name
 
             ];
-            return $this->successResponse($data, 'the code  Save');
+            return $this->successResponse( 'the code  Save',$data);
         }
         return $this->errorResponse('the code Not Save');
     }

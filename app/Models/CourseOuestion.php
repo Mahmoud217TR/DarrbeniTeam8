@@ -9,9 +9,14 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class CourseOuestion extends Model
 {
-    use HasFactory,HasUuids;
-    protected $fillable=['question','course_id'];
+    use HasFactory;
+    // ,HasUuids
+    protected $fillable=['question','course_id','uuid'];
     
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
     public function answers()
     {
         return $this->belongsToMany(CourseAnswer::class,'course_answer_questions');
