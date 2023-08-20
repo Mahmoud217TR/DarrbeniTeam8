@@ -34,16 +34,23 @@ class RoleUserController extends Controller
                 $roles[] = $role->role_name;
             }
             $array[] = [
-                "name" => $user->UserName,
+                "name" => $user->username,
                 "roles" => $roles
             ];
         }
 
-        return $this->apiResponse('data all roles with users','',$array);
+        return $this->indexResponse($array);
     }
-    public function show($id)
+    // **************************************************
+    // *************************************************
+    // **************Show*******************************
+    // *************************************************
+    // *************************************************
+    public function show($uuid)
     {
-        $user = User::with('roles')->find($id);
+       
+        
+        $user = User::with('roles')->where('uuid',$uuid)->first();
 
         if ($user) {
             $roles = [];
@@ -51,12 +58,12 @@ class RoleUserController extends Controller
                 $roles[] = $role->role_name;
             }
             $array = [
-                "name" => $user->UserName,
+                "name" => $user->username,
                 "roles" => $roles
             ];
-            return $this->apiResponse('data  role with user','',$array);
+            return $this->showResponse($array);
         } else {
-            return $this->errorResponse('User not found');
+            return $this->notfoundResponse('User not found');
         }
     }
     public function store(Request $request)
@@ -73,15 +80,15 @@ class RoleUserController extends Controller
                 "name" => $user->username,
                 "roles" => $roles->role_name
             ];
-            return $this->successResponse($array, 'Roles assigned successfully');
+            return $this->storeResponse($array);
         } else {
             // Return an error message if the user is not found
-            return $this->errorResponse('User not found');
+            return $this->notfoundResponse('User not found');
         }
     }
-    public function update(Request $request, $id)
+    public function update(Request $request, $uuid)
     {
-        $user = User::find($id);
+        $user = User::where('uuid',$uuid)->first();
 
         if ($user) {
             $roleName = $request->input('role_name');
@@ -92,19 +99,19 @@ class RoleUserController extends Controller
                 "name" => $user->username,
                 "roles" => $roles->role_name
             ];
-            return $this->successResponse($array, 'Roles assigned successfully');
+            return $this->updateResponse($array);
         } else {
             // Return an error message if the user is not found
-            return $this->errorResponse('User not found');
+            return $this->notfoundResponse('User not found');
         }
     }
-    public function destroy($id)
+    public function destroy($uuid)
     {
-        $Role_User = RoleUser::find($id);
+        $Role_User = RoleUser::where('uuid',$uuid)->first();
 
             $Role_User->delete();
             if ($Role_User) {
-                return $this->successResponse(null, 'the Role_User deleted');
+                return $this->destroyResponse();
             }
             return $this->errorResponse('you con not delete the Role_User', 400);
         

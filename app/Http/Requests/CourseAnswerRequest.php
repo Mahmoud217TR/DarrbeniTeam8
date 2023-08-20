@@ -24,8 +24,9 @@ class CourseAnswerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
-            'answer' => 'required|string'  
+            'question_name' => 'required|string|max:255',
+            'answer' => 'required|string' ,
+            'status'=>'required|boolean'
         ];
     }
 }

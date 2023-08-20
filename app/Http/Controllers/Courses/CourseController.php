@@ -7,87 +7,107 @@ use App\Http\Requests\CourseRequest;
 use App\Http\Resources\CourseResource;
 use App\Models\Course;
 use App\Models\Spacialization;
+use App\Traits\ApiResponseTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 
 class CourseController extends Controller
 {
+    use ApiResponseTrait;
+
     public function index()
     {
 
         $courses = CourseResource::collection(Course::all());
-        return $this->apiResponse('data all Course', '', $courses);
+        return $this->indexResponse( $courses);
     }
+    // *********************************************
+    // *********************************************
+    // *****************Store***********************
+    // *********************************************
+    // *********************************************
     public function store(CourseRequest $request)
     {
 
         $specialization = Spacialization::where('name', $request->specialization_name)->first();
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-
-            if ($imagePath = $image->storeAs('courses_images', 'public')) {
-                $imageName = $request->name . '.' . $image->extension();
-                $newPath = 'public/courses_images/' . $imageName;
+        if (!$specialization) {
+            return $this->notfoundResponse('specialization Not Found');
+        } else {
 
 
-                $course = Course::create([
-                    'uuid' => Str::uuid(),
+            $course = Course::create([
+                'uuid' => Str::uuid(),
 
-                    'name' => $request->name,
-                    'image' => $newPath,
-                    'spacialization_id' => $specialization->id,
-                ]);
-                $data = [
-                    'specialization_name' => $specialization->name,
-                    new CourseResource($course)
-                ];
-                return $this->successResponse('the Course  Save', $data);
-            } else {
-                return $this->errorResponse('can not uploud Image', 404);
+                'name' => $request->name,
+
+                'spacialization_id' => $specialization->id,
+            ]);
+          
+            return $this->storeResponse( new CourseResource($course));
+        }
+    }
+// ***********************************************
+// ***********************************************
+// *********************Show**********************
+// **********************************************
+// **********************************************
+
+    public function show($uuid)
+    {
+        $course = Course::where('uuid', $uuid)->first();
+
+        if ($course) {
+         
+            return $this->showResponse( new  CourseResource($course));
+        }
+        return $this->notfoundResponse('the Course Not Found');
+    }
+
+
+
+    // ******************************************************
+    // ******************************************************
+    // ***************Update********************************
+    // ****************************************************
+    // **************************************************
+    public function update(CourseRequest $request, $uuid)
+    {
+        $specialization = Spacialization::where('name', $request->specialization_name)->first();
+        if (!$specialization) {
+            return $this->notfoundResponse('specialization Not Found');
+        } else {
+            $course = Course::where('uuid', $uuid)->first();
+            if (!$course) {
+                return $this->notfoundResponse('the course Not Found');
             }
+
+
+            $course->update([
+                'name' => $request->name,
+                'spacialization_id' => $specialization->id,
+            ]);
+
+            if ($course) {
+                return $this->updateResponse(new CourseResource($course));
+            }
+
+            return $this->errorResponse('you con not update the course ', 404);
         }
     }
-    public function show($id)
+
+    // ********************************************8
+    // ********************************************
+    // *************Delete************************
+    // *******************************************
+    public function destroy($uuid)
     {
-        $course = Course::find($id);
-
-        if ($course) {
-            $data = [
-                'specialization_name' => $course->specializations->name,
-                new  CourseResource($course)
-            ];
-            return $this->successResponse(null, $data);
-        }
-        return $this->errorResponse('the Course Not Found');
-    }
-    public function update(CourseRequest $request, $id)
-    {
-        $course = Course::find($id);
-        if (!$course) {
-            return $this->errorResponse('the course Not Found', 404);
-        }
-
-
-        $course->update([
-            'name' => $request->course_name,
-
-        ]);
-
-        if ($course) {
-            return $this->successResponse('the course update', new CourseResource($course));
-        }
-
-        return $this->errorResponse('you con not update the course ', 404);
-    }
-    public function destroy($id)
-    {
-        $Course = Course::find($id);
+        $Course = Course::where('uuid', $uuid)->first();
 
 
         $Course->delete();
         if ($Course) {
-            return $this->successResponse('the Course deleted', null);
+            return $this->destroyResponse();
         }
         return $this->errorResponse('you con not delete the Course', 400);
     }

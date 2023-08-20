@@ -26,8 +26,8 @@ class CourseRequest extends FormRequest
         return [
             //
             'name' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
-            'specialization_id' => 'required|integer|exists:specializations,id'
+            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
+            'specialization_name' => 'required|string|max:255'
         ];
     }
 }

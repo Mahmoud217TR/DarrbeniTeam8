@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
-class CourseOuestion extends Model
+class CourseQuestion extends Model
 {
     use HasFactory;
     // ,HasUuids
@@ -21,9 +21,9 @@ class CourseOuestion extends Model
     {
         return $this->belongsToMany(CourseAnswer::class,'course_answer_questions');
     }
-    public function references(): MorphMany
+    public function reference()
     {
-        return $this->morphMany(Reference::class, 'referenceable');
+        return $this->morphOne(Reference::class, 'referenceable');
     } 
     public function favorites(): MorphMany
     {

@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('references', function (Blueprint $table) {
-            $table->uuid('uuid')->unique();
             $table->id();
-            $table->text('refernce');
+            $table->uuid('uuid')->unique();
+            $table->string('reference');
+            $table->morphs('referenceable');
             
             $table->timestamps();
         });

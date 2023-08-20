@@ -10,7 +10,7 @@ class Reference extends Model
 {
     use HasFactory;
     // ,HasUuids
-    protected $fillable=['refernce','uuid'];
+    protected $fillable=['reference','uuid'];
 
     public function referenceable(): MorphTo
     {

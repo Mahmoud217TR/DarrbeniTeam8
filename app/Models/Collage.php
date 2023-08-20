@@ -21,11 +21,11 @@ class Collage extends Model
     {
         return $this->HasToMany(User::class);
     }
-    public function categories()
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
-    public function specialization()
+    public function specializations()
     {
         return $this->HasToMany(Spacialization::class);
     }

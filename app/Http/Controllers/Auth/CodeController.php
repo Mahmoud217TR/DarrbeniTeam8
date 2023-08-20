@@ -32,13 +32,8 @@ class CodeController extends Controller
 
 
         if ($code) {
-            $data=[
-                new CodeResource($code),
-                'user'=>$code->user->username,
-                'collage'=>$code->collage->name
-
-            ];
-            return $this->successResponse( 'the code  Save',$data);
+          
+            return $this->successResponse( 'the code  Save',   new CodeResource($code),);
         }
         return $this->errorResponse('the code Not Save');
     }

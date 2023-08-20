@@ -15,8 +15,9 @@ class CourseAnswerResource extends JsonResource
     public function toArray($request)
     {
         return[
-            'name'=>$this->name,
+         
             'answer'=>$this->answer,
+            
            ];
     }
 }

@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('national_questions', function (Blueprint $table) {
-            $table->uuid('uuid')->uniqid();
             $table->id();
+            $table->uuid('uuid')->uniqid();
             $table->text('question');
             $table->string('date');
 

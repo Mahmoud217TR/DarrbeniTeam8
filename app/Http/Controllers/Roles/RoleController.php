@@ -10,6 +10,7 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Traits\ApiResponseTrait;
+use Illuminate\Support\Str;
 
 
 class RoleController extends Controller
@@ -24,20 +25,22 @@ class RoleController extends Controller
     public function index()
     {
         $role = RoleResource::collection(Role::all());
-        return $this->apiResponse('data all role','',$role);
+        return $this->indexResponse($role);
     }
     public function store(RoleRequest $request)
     {
         
         $role = Role::create([
+            'uuid' => Str::uuid(),
             'role_name' => $request->role_name,
         ]);
 
         if ($role) {
-            return $this->successResponse('the role  Save',new RoleResource($role) );
+            return $this->storeResponse(new RoleResource($role) );
         }
         return $this->errorResponse('the role Not Save');
     }
+
 
     /**
      * Display the specified resource.
@@ -45,14 +48,14 @@ class RoleController extends Controller
      * @param  \App\Models\role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($uuid)
     {
-        $role = role::find($id);
+        $role = role::where('uuid',$uuid)->first();
 
         if ($role) {
-            return $this->successResponse(null,new RoleResource($role));
+            return $this->showResponse(new RoleResource($role));
         }
-        return $this->errorResponse('the role Not Found');
+        return $this->notfoundResponse('the role Not Found');
     }
 
     /**
@@ -62,24 +65,25 @@ class RoleController extends Controller
      * @param  \App\Models\role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(RoleRequest $request, $id)
+    public function update(RoleRequest $request, $uuid)
     {
         // if ($request->fails()) {
         //     return $this->apiResponse(null, $request->errors(), 400);
         // }
-        $role = role::find($id);
+        $role = role::where('uuid',$uuid)->first();
         if (!$role) {
-            return $this->errorResponse('the role Not Found', 404);
+            return $this->notfoundResponse('the role Not Found');
         }
        
 
             $role->update([
+            'uuid' => Str::uuid(),
                 'role_name' => $request->role_name,
 
             ]);
 
             if ($role) {
-                return $this->successResponse('the role update',new roleResource($role));
+                return $this->updateResponse(new roleResource($role));
             }
        
         return $this->errorResponse('you con not updet the role ', 404);
@@ -91,14 +95,14 @@ class RoleController extends Controller
      * @param  \App\Models\role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($uuid)
     {
-        $Role = Role::find($id);
+        $role = role::where('uuid',$uuid)->first();
 
         
-            $Role->delete();
-            if ($Role) {
-                return $this->successResponse( 'the Role deleted',null);
+            $role->delete();
+            if ($role) {
+                return $this->destroyResponse();
             }
             return $this->errorResponse('you con not delete the Role', 400);
         

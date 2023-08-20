@@ -10,18 +10,19 @@ class Course extends Model
 {
     use HasFactory;
     // ,HasUuids
-    protected $fillable=['name','image','spacialization_id','uuid'];
+    protected $fillable=['name','spacialization_id','uuid'];
 
 
 
 
-    public function specializations()
+    public function specialization()
     {
-        return $this->HasToMany(Spacialization::class);
+        return $this->belongsTo(Spacialization::class);
     }
+  
     
-    public function question()
+    public function questions()
     {
-        return $this->HasToMany(CourseOuestion::class);
+        return $this->HasMany(CourseOuestion::class);
     }
 }

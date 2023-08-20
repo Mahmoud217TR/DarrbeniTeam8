@@ -10,11 +10,11 @@ class CourseAnswer extends Model
 {
     use HasFactory;
     // ,HasUuids
-    protected $fillable=['name','answer','uuid'];
+    protected $fillable=['answer','uuid'];
     
     
     public function questions()
     {
-        return $this->belongsToMany(CourseOuestion::class,'course_answer_questions');
+        return $this->belongsToMany(CourseQuestion::class,'course_answer_questions');
     }
 }

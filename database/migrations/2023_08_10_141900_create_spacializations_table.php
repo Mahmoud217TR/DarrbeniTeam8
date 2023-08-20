@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('spacializations', function (Blueprint $table) {
-            $table->uuid('uuid')->unique();
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->string('name');
             $table->foreignId('collage_id')->constrained('collages')->cascadeOnDelete();
         

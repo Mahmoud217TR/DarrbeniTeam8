@@ -16,6 +16,9 @@ class CodeResource extends JsonResource
     {
         return [
             'value' => $this->value,
+            'user' => $this->user->username,
+            'collage' => $this->collage->name
+
 
         ];
     }

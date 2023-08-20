@@ -16,6 +16,8 @@ class CourseQuestionResource extends JsonResource
     {
         return[
             'question'=>$this->question,
+            'course_name'=>$this->course->name,
+            // 'reference'=>$this->reference->reference
            ];
     }
 }

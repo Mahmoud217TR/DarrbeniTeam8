@@ -6,6 +6,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Resources\LoginResource;
+use App\Http\Resources\UserResource;
 use App\Models\Code;
 use App\Models\Collage;
 use App\Models\User;
@@ -30,11 +32,19 @@ class AuthController extends Controller
             'phone' => $request->phone,
             'collage_id' => $collage->id,
         ]);
+        $code = Code::create([
+            'uuid' => Str::uuid(),
+            'value' => random_int(1000, 9999),
+            'user_id'=>$user->id,
+            'collage_id'=>$collage->id,
+        ]);
+
 
         // Create a token for the user
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return $this->registerResponse($user->username);
+ 
+        return $this->registerResponse(new UserResource($user) );
     }
 
 
@@ -53,11 +63,8 @@ class AuthController extends Controller
 
         // Generate a token for the logged-in user
         $token = $user->createToken('auth_token')->plainTextToken;
-        $data = [
-            'username' => $user->username,
-            'collage' => $user->collages->name
-        ];
-        return $this->loginResponse($data, $token);
+       
+        return $this->loginResponse(new LoginResource($user) , $token);
     }
     return $this->notfoundResponse('Code Not found');
     }
@@ -67,7 +74,7 @@ class AuthController extends Controller
         // Revoke the current user's access token
         auth()->user::currentAccessToken()->delete();
 
-        return $this->logoutResponse('LogOut Successfully');
+        return $this->logoutResponse('Logout Successfully');
     }
 
     // Helper function to check if the provided code is valid for the user

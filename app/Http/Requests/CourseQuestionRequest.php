@@ -25,7 +25,8 @@ class CourseQuestionRequest extends FormRequest
     {
         return [
             'question' => 'required|string|max:255',
-            'course_id' => 'required|integer'
+            'course_name' => 'required|string|max:255',
+            'reference'=>'required|string|max:255'
         ];
     }
 }

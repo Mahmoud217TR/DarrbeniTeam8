@@ -15,8 +15,8 @@ class LoginResource extends JsonResource
     public function toArray($request)
     {
         return[
-            'name'=>$this->UserName,
-
+            'name'=>$this->username,
+            'collage' => $this->collage->name
            ];
     }
 }

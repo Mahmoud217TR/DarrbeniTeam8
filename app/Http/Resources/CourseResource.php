@@ -16,7 +16,7 @@ class CourseResource extends JsonResource
     {
         return[
             'name'=>$this->name,
-            'image'=>$this->image,
+            // 'specialization_name' => $this->specialization->name,
            ];
     }
 }

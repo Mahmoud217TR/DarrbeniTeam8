@@ -26,7 +26,7 @@ trait ApiResponseTrait
         return response()->json([
             'status' => false,
             'message' => $message,
-            'code' => 401
+            'code' => 404
         ]);
     }
 
@@ -58,6 +58,65 @@ trait ApiResponseTrait
 
     protected function logoutResponse($message)
     {
-        return $this->successResponse($message,['code'=>200]);
+        return $this->successResponse($message,['code'=>204]);
     }
+
+
+
+    protected function indexResponse($data)
+    {
+        return response()->json([
+            'status'=>true,
+            'message' => 'return successfully',
+            'data' => $data,
+            'code' => 200 
+
+        ]);
+    }
+
+    protected function storeResponse($data)
+    {
+        return response()->json([
+            'status'=>true,
+            'message' => 'Create successfully',
+            'data' => $data,
+            'code' => 201
+
+        ]);
+    }
+
+    protected function showResponse($data)
+    {
+        return response()->json([
+            'status'=>true,
+            'message' => 'return successfully',
+            'data' => $data,
+            'code' => 200
+
+        ]);
+    }
+
+    protected function updateResponse($data)
+    {
+        return response()->json([
+            'status'=>true,
+            'message' => 'Update successfully',
+            'data' => $data,
+            'code' => 201
+
+        ]);
+    }
+
+    public function destroyResponse($message ='Delete  successfully' ){
+        return response()->json([
+            'status'=>true,
+            'message' => $message  ,
+            'code' => 204
+
+        ]);
+    }
+
+    
+
+
 }

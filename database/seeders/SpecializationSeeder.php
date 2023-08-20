@@ -20,23 +20,17 @@ class SpecializationSeeder extends Seeder
         Spacialization::create([
             'uuid'=>Str::uuid(),
 
-            'name' => 'الذكاء الاصطناعي',
+            'name' => ' ماستر',
             
             'collage_id'=>'1'
            ]);
            Spacialization::create([
             'uuid'=>Str::uuid(),
 
-            'name' => 'الشبكات ',
+            'name' => 'تخرج ',
             
             'collage_id'=>'1'
            ]);
-           Spacialization::create([
-            'uuid'=>Str::uuid(),
-
-            'name' => 'هندسة برمجيات ',
-            
-            'collage_id'=>'1'
-           ]);
+           
     }
 }
