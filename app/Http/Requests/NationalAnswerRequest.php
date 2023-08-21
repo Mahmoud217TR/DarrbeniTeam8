@@ -26,7 +26,7 @@ class NationalAnswerRequest extends FormRequest
         return [
             //
             'answer' => 'required|string',
-            'question_id' => 'required|integer',
+            'question_name' => 'required|string',
             'status' => 'required'
         ];
     }

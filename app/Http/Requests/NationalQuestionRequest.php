@@ -27,7 +27,8 @@ class NationalQuestionRequest extends FormRequest
             //
             'question' => 'required|string|max:255',
             'date' => 'required|date', 
-            'specialization_id' => 'required|integer|exists:specializations,id'
+            'specialization_name' => 'required|string|max:255',
+            'reference'=>'required|string|max:255'
         ];
     }
 }

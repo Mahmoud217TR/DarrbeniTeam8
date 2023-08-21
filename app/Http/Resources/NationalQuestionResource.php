@@ -16,7 +16,9 @@ class NationalQuestionResource extends JsonResource
     {
         return[
             'question'=>$this->question,
-            'data'=>$this->data,
+            'date'=>$this->date,
+            // 'specialization_name'=>$this->specialization->name
+            'reference'=>$this->reference->reference
            ];
     }
 }

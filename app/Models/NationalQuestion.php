@@ -13,13 +13,18 @@ class NationalQuestion extends Model
     // ,HasUuids
     protected $fillable=['question','date','spacialization_id','uuid'];
 
+    public function specialization()
+    {
+        return $this->belongsTo(Spacialization::class);
+    }
+  
     public function answers()
     {
-        return $this->hasToMany(NationalAnswer::class);
+        return $this->hasMany(NationalAnswer::class);
     }
-    public function references(): MorphMany
+    public function reference()
     {
-        return $this->morphMany(Reference::class, 'referenceable');
+        return $this->morphOne(Reference::class, 'referenceable');
     }
     public function favorites(): MorphMany
     {

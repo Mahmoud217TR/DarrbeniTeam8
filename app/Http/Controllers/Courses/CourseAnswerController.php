@@ -76,17 +76,21 @@ class CourseAnswerController extends Controller
      *********************************************/
     public function show($uuid)
     {
-        $answer = CourseAnswer::with('course_questions')->where('uuid', $uuid)->first();
+        $question = CourseQuestion::with('answers')->where('uuid', $uuid)->first();
 
-        if ($answer) {
+        if ($question) {
+        
+            foreach ($question->answers as $answer) {
+                $answers[] = $answer->answer;
+            }
             $data = [
 
-                'question' => $answer->questions->question,
-                new  CourseAnswerResource($answer)
+                'question' => $question->question,
+              'answer'=> $answers
             ];
             return $this->showResponse($data);
         }
-        return $this->notfoundResponse('the Course Not Found');
+        return $this->notfoundResponse('the question Not Found');
     }
     // ***********************************************
     // ***********************************************

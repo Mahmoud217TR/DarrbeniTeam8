@@ -16,7 +16,7 @@ class Category extends Model
 
     public function collages()
     {
-        return $this->HasToMany(Collage::class);
+        return $this->HasMany(Collage::class);
     }
    
 }

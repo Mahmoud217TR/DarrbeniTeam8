@@ -10,7 +10,7 @@ class NationalAnswer extends Model
 {
     use HasFactory ;
     // ,HasUuids
-    protected $fillable=['answer','question_id','status','uuid'];
+    protected $fillable=['answer','national_question_id','status','uuid'];
 
     public function question()
     {

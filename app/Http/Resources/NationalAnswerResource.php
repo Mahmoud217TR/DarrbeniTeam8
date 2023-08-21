@@ -15,6 +15,8 @@ class NationalAnswerResource extends JsonResource
     public function toArray($request)
     {
         return[
+            'question'=>$this->question->question,
+
             'answer'=>$this->answer,
            ];
     }

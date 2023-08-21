@@ -17,4 +17,12 @@ class Spacialization extends Model
     {
         return $this->belongsTo(Collage::class);
     }
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
+    public function nationalQuestions()
+    {
+        return $this->hasMany(NationalQuestion::class);
+    }
 }

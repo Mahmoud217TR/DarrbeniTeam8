@@ -8,6 +8,8 @@ use App\Http\Controllers\Categories\SpacializationController;
 use App\Http\Controllers\Courses\CourseAnswerController;
 use App\Http\Controllers\Courses\CourseController;
 use App\Http\Controllers\Courses\CourseQuestionController;
+use App\Http\Controllers\National\NationalAnswerController;
+use App\Http\Controllers\National\NationalQuestionController;
 use App\Http\Controllers\Roles\RoleController;
 use App\Http\Controllers\Roles\RoleUserController;
 use Illuminate\Http\Request;
@@ -52,6 +54,9 @@ Route::group([
     Route::resource('/course', CourseController::class);
     Route::resource('/courseQuestion', CourseQuestionController::class);
     Route::resource('/courseAnswer', CourseAnswerController::class);
+    Route::resource('/nationalAnswer', NationalAnswerController::class);
+    Route::resource('/nationalQuestion', NationalQuestionController::class);
+
 
     ///////////////   category /////////////////
     Route::get('/category', [CategoryController::class, 'index']);

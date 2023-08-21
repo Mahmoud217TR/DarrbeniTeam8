@@ -18,7 +18,7 @@ return new class extends Migration
             $table->uuid('uuid')->unique();
             $table->string('answer');
         
-            $table->foreignId('question_id')->constrained('national_questions')->cascadeOnDelete();
+            $table->foreignId('national_question_id')->constrained('national_questions')->cascadeOnDelete();
             $table->boolean('status')->default(0);
             $table->timestamps();
         });
