@@ -60,8 +60,8 @@ class User extends Authenticatable
     {
         return $this->roles()->whereIn('role_name', $role)->exists();
     }
-    public function favorite()
+    public function favorites()
     {
-        return $this->belongsTo(Favorite::class);
+        return $this->hasMany(Favorite::class);
     }
 }

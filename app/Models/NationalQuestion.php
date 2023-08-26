@@ -26,8 +26,8 @@ class NationalQuestion extends Model
     {
         return $this->morphOne(Reference::class, 'referenceable');
     }
-    public function favorites(): MorphMany
+    public function favorites()
     {
-        return $this->morphMany(Favorite::class, 'favoriteble');
+        return $this->morphMany(Favorite::class, 'favoritable');
     }
 }

@@ -10,6 +10,8 @@ use App\Http\Controllers\Courses\CourseController;
 use App\Http\Controllers\Courses\CourseQuestionController;
 use App\Http\Controllers\National\NationalAnswerController;
 use App\Http\Controllers\National\NationalQuestionController;
+use App\Http\Controllers\NotificationContentController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Roles\RoleController;
 use App\Http\Controllers\Roles\RoleUserController;
 use Illuminate\Http\Request;
@@ -83,34 +85,62 @@ Route::group([
     Route::post('spacialization/edit/{id}', [SpacializationController::class, 'update']);
     Route::get('spacialization/show/{id}', [SpacializationController::class, 'show']);
     Route::get('spacialization/delete/{id}', [SpacializationController::class, 'destroy']);
+
+
+    Route::post('/notification', [NotificationContentController::class, 'sendNotification']);
+    
 });
 
+Route::middleware('auth:sanctum')->group(function () {
 
+    Route::get('favorite',[FavoriteController::class,'index']);
+    Route::post('favorite/create/{id}',[FavoriteController::class,'store']);
+    Route::get('favorite/show/{id}',[FavoriteController::class,'show']);
+    Route::post('favorite/delete/{id}',[FavoriteController::class,'destroy']);
+    });
 
 // *********************************************
 // *************app***************************
 // ********************************************
 
 
-Route::middleware('auth:sanctum')->group(function () {
 
-    Route::get('/category', [CategoryController::class, 'index']);
+// Route::middleware('auth:sanctum')->group(function () {
 
-    Route::get('/category/all', [CategoryController::class, 'getAll']);
+    // Route::get('/category', [CategoryController::class, 'index']);
+
+    // Route::get('/category/all', [CategoryController::class, 'getAll']);
 
     Route::get('collage', [CollageController::class, 'index']);
+    Route::post('/login', [AuthController::class, 'login']);
+
+    Route::post('collage/create', [CollageController::class, 'store']);
 
     Route::get('spacialization', [SpacializationController::class, 'index']);
 
+    Route::get('collage/show/{id}', [CollageController::class, 'show']);
+    Route::get('collage/delete/{id}', [CollageController::class, 'destroy']);
 
 
     Route::get('Course', [CourseController::class, 'index']);
 
 
+    Route::post('collage/update/{id}', [CollageController::class, 'update']);
 
 
     Route::get('/courseAnswer',[ CourseAnswerController::class, 'index']);
 
 
+    Route::get('/category/show/{id}', [CategoryController::class, 'show']);
+    Route::post('category/create', [CategoryController::class, 'store']);
+    Route::post('/category/update/{id}', [CategoryController::class, 'update']);
+    Route::get('/category/delete/{id}', [CategoryController::class, 'destroy']);
 
-});
+
+
+    Route::get('spacialization', [SpacializationController::class, 'index']);
+    Route::post('spacialization/create', [SpacializationController::class, 'store']);
+    Route::post('spacialization/edit/{id}', [SpacializationController::class, 'update']);
+    Route::get('spacialization/show/{id}', [SpacializationController::class, 'show']);
+    Route::get('spacialization/delete/{id}', [SpacializationController::class, 'destroy']);
+// });

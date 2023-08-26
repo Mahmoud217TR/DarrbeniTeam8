@@ -116,7 +116,21 @@ trait ApiResponseTrait
         ]);
     }
 
-    
+    // **********************************************************
+    // ********************************************************
+    // ******************Notification**************************
+    // ********************************************************
+    // ********************************************************
+    protected function NotificationResponse($data)
+    {
+        return response()->json([
+            'status'=>true,
+            'message' => 'Create Successfully Notification and Send Notification To All User ',
+            'data' => $data,
+            'code' => 201
+
+        ]);
+    }
 
 
 }
