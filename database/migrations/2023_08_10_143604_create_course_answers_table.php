@@ -18,6 +18,8 @@ return new class extends Migration
             $table->uuid('uuid')->unique();
             $table->text('answer');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

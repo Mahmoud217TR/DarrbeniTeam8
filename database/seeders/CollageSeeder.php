@@ -17,6 +17,54 @@ class CollageSeeder extends Seeder
      */
     public function run()
     {
+        $imageFilePath2 = 'D:/svg/DR.svg';
+        
+        // Store the image in the storage folder
+        $imagePath2 = Storage::putFile('public/Collage', $imageFilePath2);
+        Collage::create([
+         'uuid'=>Str::uuid(),
+
+         'name' => 'طب بشري',
+         'image'=>$imagePath2,
+         'category_id'=>'2'
+        ]);
+
+        $imageFilePath3 = 'D:/svg/dentist.svg';
+     
+        // Store the image in the storage folder
+        $imagePath3 = Storage::putFile('public/Collage', $imageFilePath3);
+        Collage::create([
+         'uuid'=>Str::uuid(),
+
+         'name' => 'طب أسنان',
+         'image'=>$imagePath3,
+         'category_id'=>'2'
+        ]);
+
+        $imageFilePath4 = 'D:/svg/pharmacy.svg';
+     
+        // Store the image in the storage folder
+        $imagePath4 = Storage::putFile('public/Collage', $imageFilePath4);
+        Collage::create([
+         'uuid'=>Str::uuid(),
+
+         'name' => 'صيدلة',
+         'image'=>$imagePath4,
+         'category_id'=>'2'
+        ]);
+
+        $imageFilePath5 = 'D:/svg/nurs.svg';
+     
+        // Store the image in the storage folder
+        $imagePath5 = Storage::putFile('public/Collage', $imageFilePath5);
+         Collage::create([
+         'uuid'=>Str::uuid(),
+
+         'name' => 'تمريض',
+         'image'=>$imagePath5,
+         'category_id'=>'2'
+        ]);
+        
         $imageFilePath = 'D:\svg\It.svg';
         
         // Store the image in the storage folder
@@ -26,7 +74,7 @@ class CollageSeeder extends Seeder
         Collage::create([
             'uuid'=>Str::uuid(),
 
-            'name' => 'هندسة المعلوماتية',
+            'name' => 'هندسة معلوماتية',
 
         'image'=>$imagePath,
             'category_id'=>'1'
@@ -40,59 +88,13 @@ class CollageSeeder extends Seeder
            Collage::create([
             'uuid'=>Str::uuid(),
 
-            'name' => 'هندسة العمارة',
+            'name' => 'هندسة معمارية',
             'image'=>$imagePath1,
             'category_id'=>'1'
            ]);
           
 
-           $imageFilePath2 = 'D:/svg/DR.svg';
-        
-           // Store the image in the storage folder
-           $imagePath2 = Storage::putFile('public/Collage', $imageFilePath2);
-           Collage::create([
-            'uuid'=>Str::uuid(),
-
-            'name' => 'طب لشري',
-            'image'=>$imagePath2,
-            'category_id'=>'2'
-           ]);
-
-           $imageFilePath3 = 'D:/svg/dentist.svg';
-        
-           // Store the image in the storage folder
-           $imagePath3 = Storage::putFile('public/Collage', $imageFilePath3);
-           Collage::create([
-            'uuid'=>Str::uuid(),
-
-            'name' => 'طب أسنان',
-            'image'=>$imagePath3,
-            'category_id'=>'2'
-           ]);
-
-           $imageFilePath4 = 'D:/svg/pharmacy.svg';
-        
-           // Store the image in the storage folder
-           $imagePath4 = Storage::putFile('public/Collage', $imageFilePath4);
-           Collage::create([
-            'uuid'=>Str::uuid(),
-
-            'name' => 'صيدلة',
-            'image'=>$imagePath4,
-            'category_id'=>'2'
-           ]);
-
-           $imageFilePath5 = 'D:/svg/nurs.svg';
-        
-           // Store the image in the storage folder
-           $imagePath5 = Storage::putFile('public/Collage', $imageFilePath5);
-            Collage::create([
-            'uuid'=>Str::uuid(),
-
-            'name' => 'تمريض',
-            'image'=>$imagePath5,
-            'category_id'=>'2'
-           ]);
+          
 
     }
 }

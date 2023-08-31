@@ -22,7 +22,6 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'phone',
-        'collage_id',
         'uuid',
     ];
 
@@ -44,10 +43,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function collage()
-    {
-        return $this->belongsTo(Collage::class);
-    }
+    // public function collage()
+    // {
+    //     return $this->belongsTo(Collage::class);
+    // }
     public function codes()
     {
         return $this->hasOne(Code::class);
@@ -56,6 +55,13 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class, 'role_users');
     }
+
+    public function complaints()
+    {
+        return $this->hasOne(Complaints::class);
+    }
+    
+    
     public function hasRole($role)
     {
         return $this->roles()->whereIn('role_name', $role)->exists();

@@ -6,11 +6,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Collage extends Model
 {
     use HasFactory;
 // ,HasUuids
+use SoftDeletes;
     
     protected $fillable=['name','image','category_id','uuid'];
 
@@ -25,8 +27,8 @@ class Collage extends Model
     {
         return $this->belongsTo(Category::class);
     }
-    public function specializations()
+    public function spacializations()
     {
-        return $this->HasToMany(Spacialization::class);
+        return $this->HasMany(Spacialization::class);
     }
 }

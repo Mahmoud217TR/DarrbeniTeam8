@@ -24,6 +24,13 @@ class DatabaseSeeder extends Seeder
            RoleSeeder::class,
            RoleUserSeeder::class,
            CodeSeeder::class,
+           CourseSeeder::class,
+           CourseAnswerSeeder::class,
+           CourseQuestionSeeder::class,
+           CourseAnswerQuestionSeeder::class,
+          NationalQuestionSeeder::class,
+          NationalAnswerSeeder::class,
+          AboutUsSeeder::class,
 
           
         ]);

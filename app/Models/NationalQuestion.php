@@ -6,16 +6,22 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class NationalQuestion extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     // ,HasUuids
-    protected $fillable=['question','date','spacialization_id','uuid'];
+    protected $fillable=['question','date','spacialization_id','course_id','uuid'];
 
-    public function specialization()
+    public function spacialization()
     {
         return $this->belongsTo(Spacialization::class);
+    }
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
     }
   
     public function answers()

@@ -17,10 +17,11 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('answer');
-        
-            $table->foreignId('national_question_id')->constrained('national_questions')->cascadeOnDelete();
             $table->boolean('status')->default(0);
+            $table->foreignId('national_question_id')->constrained('national_questions')->cascadeOnDelete();
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

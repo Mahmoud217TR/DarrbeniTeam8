@@ -22,14 +22,14 @@ class SpecializationSeeder extends Seeder
 
             'name' => ' ماستر',
             
-            'collage_id'=>'1'
+            'collage_id'=>'5'
            ]);
            Spacialization::create([
             'uuid'=>Str::uuid(),
 
             'name' => 'تخرج ',
             
-            'collage_id'=>'1'
+            'collage_id'=>'5'
            ]);
            
     }

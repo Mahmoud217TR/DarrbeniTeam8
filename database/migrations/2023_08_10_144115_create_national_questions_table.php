@@ -20,7 +20,10 @@ return new class extends Migration
             $table->string('date');
 
             $table->foreignId('spacialization_id')->constrained('spacializations')->cascadeOnDelete();
+            $table->foreignId('course_id')->constrained('courses')->cascadeOnDelete();
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

@@ -22,6 +22,8 @@ return new class extends Migration
             $table->foreignId('course_question_id')->constrained('course_questions')->cascadeOnDelete();
             $table->boolean('status')->default(0);
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

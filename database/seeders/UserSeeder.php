@@ -21,7 +21,6 @@ class UserSeeder extends Seeder
 
             'username' =>  'admin',
             'phone'=>'0123456789',
-            'collage_id'=>'1'
            
            ]);
            User::create([
@@ -29,7 +28,7 @@ class UserSeeder extends Seeder
 
             'username' =>  'ahmad',
             'phone'=>'0987654321',
-            'collage_id'=>'1'
+
            
            ]);
            User::create([
@@ -37,7 +36,7 @@ class UserSeeder extends Seeder
 
             'username' =>  'aya',
             'phone'=>'0912345678',
-            'collage_id'=>'2'
+
            
            ]);
            User::create([
@@ -45,7 +44,7 @@ class UserSeeder extends Seeder
 
             'username' =>  'elias',
             'phone'=>'0981234567',
-            'collage_id'=>'3'
+
            
            ]);
            User::create([
@@ -53,7 +52,7 @@ class UserSeeder extends Seeder
 
             'username' =>  'asma',
             'phone'=>'0987123456',
-            'collage_id'=>'4'
+
            
            ]);
     }

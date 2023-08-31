@@ -12,5 +12,5 @@ class CourseAnswerQuestion extends Model
     // ,HasUuids
     protected $fillable=['course_answer_id','course_question_id','status','uuid'];
     
-
+    
 }

@@ -20,6 +20,8 @@ return new class extends Migration
            
             $table->foreignId('spacialization_id')->constrained('spacializations')->cascadeOnDelete();
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

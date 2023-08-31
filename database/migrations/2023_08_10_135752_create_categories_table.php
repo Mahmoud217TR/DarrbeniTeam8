@@ -17,8 +17,10 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('name');
-            $table->string('image');
+            // $table->string('image');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 
