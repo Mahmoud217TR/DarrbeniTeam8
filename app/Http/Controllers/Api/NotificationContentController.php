@@ -17,7 +17,7 @@ use Illuminate\Support\Str;
 
 class NotificationContentController extends Controller
 {
-    use ApiResponseTrait;
+    use ApiResponseTrait; 
     public function sendNotification(Request $request)
     {
         $notification = NotificationContent::create([

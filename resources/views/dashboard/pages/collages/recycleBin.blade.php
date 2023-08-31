@@ -44,8 +44,7 @@
                                 <span class="lbl"></span>
                             </label>
                         </td>
-                        <td><img style="width: 90px; height: 90px;"
-                            src="{{ asset('storage/Collage' . $data->image) }}"></td>
+                        <td><img style="width: 90px; height: 90px;" src="{{ URL::to('/') }}/storage/Collage/{{ $data->image }}"></td>
                         <td>{{ $data->uuid }}</td>
 
                         <td>{{ $data->name }}</td>

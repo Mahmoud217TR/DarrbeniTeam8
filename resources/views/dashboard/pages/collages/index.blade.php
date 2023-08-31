@@ -46,11 +46,7 @@
                                         <span class="lbl"></span>
                                     </label>
                                 </td>
-                                <td>
-                                    <a href="{{ asset('storage/Collage/' . $slider->image) }}">
-                                        <img style="width: 90px; height: 90px;" src="{{ asset('storage/Collage/' . $slider->image) }}" alt="Slider Image">
-                                    </a>
-                                </td>
+                                <td><img style="width: 90px; height: 90px;" src="{{ URL::to('/') }}/storage/Collage/{{ $data->image }}"></td>
                                 <td>{{ $data->uuid }}</td>
 
                                 <td>{{ $data->name }}</td>

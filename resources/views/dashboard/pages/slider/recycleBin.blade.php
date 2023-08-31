@@ -47,8 +47,7 @@
                                 <td>{{ $data->uuid }}</td>
 
                                 <td>{{ $data->link }}</td>
-                                <td><img style="width: 90px; height: 90px;"
-                                    src="{{ asset('storage/Collage' . $data->image) }}"></td>
+                                                               <td><img style="width: 90px; height: 90px;" src="{{ URL::to('/') }}/storage/slider/{{ $data->image }}"></td>
                               
 
                                 <td>
